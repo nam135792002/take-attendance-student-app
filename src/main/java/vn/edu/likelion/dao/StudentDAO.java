@@ -1,7 +1,6 @@
 package vn.edu.likelion.dao;
 
 import vn.edu.likelion.config.ConnectionDB;
-import vn.edu.likelion.entity.Attendance;
 import vn.edu.likelion.entity.Student;
 
 import java.sql.Date;
@@ -10,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class StudentDAO {
     ConnectionDB connectionDB = new ConnectionDB();

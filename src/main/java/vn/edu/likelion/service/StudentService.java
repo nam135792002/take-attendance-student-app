@@ -50,26 +50,42 @@ public class StudentService {
         switch (type) {
             case "ALL":
                 listStudents = studentDAO.takeListOfStudent();
-                System.out.println(">> List of all student");
-                showListOfStudent(listStudents);
+                if(listStudents.isEmpty()){
+                    System.out.println(">> List is empty.");
+                }else{
+                    System.out.println(">> List of all student");
+                    showListOfStudent(listStudents);
+                }
                 break;
             case "ABSENT":
                 Date date1 = enterDate();
                 listStudents = studentDAO.takeListOfAbsentOrPresentStudent(date1,false);
-                System.out.println(">> List of all absent student");
-                showListOfStudent(listStudents);
+                if(listStudents.isEmpty()){
+                    System.out.println(">> List is empty.");
+                }else{
+                    System.out.println(">> List of all absent student");
+                    showListOfStudent(listStudents);
+                }
                 break;
             case "PRESENT":
                 Date date2 = enterDate();
                 listStudents = studentDAO.takeListOfAbsentOrPresentStudent(date2, true);
-                System.out.println(">> List of all present student");
-                showListOfStudent(listStudents);
+                if(listStudents.isEmpty()){
+                    System.out.println(">> List is empty.");
+                }else{
+                    System.out.println(">> List of all present student");
+                    showListOfStudent(listStudents);
+                }
                 break;
             case "ALL_DATE":
                 Date date3 = enterDate();
                 listStudents = studentDAO.takeListOfStudentByDate(date3);
-                System.out.println(">> List of all student by date");
-                showListOfStudentByDate(listStudents);
+                if(listStudents.isEmpty()){
+                    System.out.println(">> List is empty.");
+                }else{
+                    System.out.println(">> List of all student by date");
+                    showListOfStudentByDate(listStudents);
+                }
                 break;
             default:
                 System.out.println("Print list of student failed!");

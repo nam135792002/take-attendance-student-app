@@ -16,4 +16,5 @@ public class Attendance {
     private Student student;
     private LocalDate takeDate;
     private boolean status;
+    private User user;
 }

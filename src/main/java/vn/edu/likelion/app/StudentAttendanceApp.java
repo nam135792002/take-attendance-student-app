@@ -14,6 +14,7 @@ public class StudentAttendanceApp {
     public static AttendanceService attendanceService = new AttendanceService();
     public static Scanner sc = new Scanner(System.in);
     public static UserService userService = new UserService();
+    public static User user = null;
 
     public static void main(String[] args) {
 //        studentService.createListStudent(); // create DB from file txt
@@ -28,7 +29,7 @@ public class StudentAttendanceApp {
                 int select = Integer.parseInt(input);
 
                 if(select == 1){
-                    User user = userService.login();
+                    user = userService.login();
                     if(user != null) author(user);
                     else System.out.println("--> Username or password is invalid!");
                 } else if (select == 2) {
@@ -48,7 +49,7 @@ public class StudentAttendanceApp {
             try {
                 System.out.println(">> MENU");
                 for (Permission permission : listPermission){
-                    System.out.println(permission.getId() + permission.getName());
+                    System.out.println(permission.getId() + ". " + permission.getName());
                 }
                 System.out.println("Press 0 to exit program!");
                 System.out.print("--> Enter your choice: ");
@@ -58,7 +59,7 @@ public class StudentAttendanceApp {
                 if(select != 0){
                     Permission permission = getPermissionById(listPermission, select);
                     if(permission != null){
-                        choiceMenu(permission.getId());
+                        choiceMenu(permission.getId(), user);
                     }else{
                         System.out.println("You do not have the permission to perform this action.");
                     }
@@ -75,9 +76,9 @@ public class StudentAttendanceApp {
         return listPermission.stream().filter(permission -> permission.getId() == select).findFirst().orElse(null);
     }
 
-    private static void choiceMenu(int permissionId){
+    private static void choiceMenu(int permissionId, User user){
         if(permissionId == 4){
-            attendanceService.takeAttendance();
+            attendanceService.takeAttendance(user);
         }else if(permissionId == 1){
             studentService.printListOfStudent("ALL");
         } else if (permissionId == 2) {
